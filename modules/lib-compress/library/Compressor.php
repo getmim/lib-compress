@@ -30,6 +30,11 @@ class Compressor
 		return true;
 	}
 
+    static function brotliContent(string $content, int $quality=11, int $mode=BROTLI_TEXT): ?string{
+        $result = brotli_compress($content, $quality, $mode);
+        return $result ? $result : null;
+    }
+
 	static function gzip(string $file, string $target, string $mode='wb9'): bool{
 		if(false === ($fz = gzopen($target, $mode)))
 			return false;
@@ -45,6 +50,11 @@ class Compressor
 
 		return true;
 	}
+
+    static function gzipContent(string $content, int $level=9): ?string{
+        $result = gzencode($content, $level);
+        return $result ? $result : null;
+    }
 
 	static function webp(string $file, string $target, int $quality=90): bool{
 		list($width, $height, $type) = getimagesize($file);

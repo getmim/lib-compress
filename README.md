@@ -20,6 +20,10 @@ method sebagai berikuta:
 
 ### brotli(string $file, string $target, int $quality=11): bool
 
+### brotliContent(string $content, int $quality=11, int $mode=BROTLI_GENERIC): ?string
+
 ### gzip(string $file, string $target, string $mode='wb9'): bool
+
+### gzipContent(string $content, int $level=9): ?string
 
 ### webp(string $file, string $target, int $quality=90): bool
