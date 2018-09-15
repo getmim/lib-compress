@@ -12,6 +12,9 @@ class Compressor
 	static function brotli(string $file, string $target, int $quality=11): bool{
 		$file_mime = mime_content_type($file);
 
+        if(!class_exists('brotli_compress'))
+            return false;
+
 		$mode = BROTLI_GENERIC;
 		if(preg_match('!\.woff2$!', $file))
 			$mode = BROTLI_FONT;
@@ -30,7 +33,13 @@ class Compressor
 		return true;
 	}
 
-    static function brotliContent(string $content, int $quality=11, int $mode=BROTLI_TEXT): ?string{
+    static function brotliContent(string $content, int $quality=11, int $mode=0): ?string{
+        if(!class_exists('brotli_compress'))
+            return false;
+
+        if($mode === 0)
+            $mode = BROTLI_TEXT;
+
         $result = brotli_compress($content, $quality, $mode);
         return $result ? $result : null;
     }
