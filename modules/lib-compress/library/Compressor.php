@@ -66,6 +66,10 @@ class Compressor
     }
 
     static function jp2(string $file, string $target, int $quality=40): bool{
+    	$file_mime = mime_content_type($file);
+    	if(!preg_match('!image\/jpe?g$!', $file_mime))
+    		return false;
+
 		$img = new \Imagick($file);
 		$img->setImageFormat("jp2");
 		$img->setOption('jp2:quality', $quality);
