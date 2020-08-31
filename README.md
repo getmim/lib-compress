@@ -27,3 +27,5 @@ method sebagai berikuta:
 ### gzipContent(string $content, int $level=9): ?string
 
 ### webp(string $file, string $target, int $quality=90): bool
+
+### jp2(string $file, string $target, int $quality=40): bool

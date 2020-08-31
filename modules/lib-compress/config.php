@@ -7,7 +7,7 @@
 
 return [
     '__name' => 'lib-compress',
-    '__version' => '0.0.1',
+    '__version' => '0.1.0',
     '__git' => 'git@github.com:getphun/lib-compress.git',
     '__license' => 'MIT',
     '__author' => [
@@ -37,10 +37,11 @@ return [
 
     'server' => [
         'lib-compress' => [
-            'ImageGD' => 'LibCompress\\Server\\PHP::imageGD',
-            'GD/WebP' => 'LibCompress\\Server\\PHP::gdWebP',
-            'Brotli'  => 'LibCompress\\Server\\PHP::brotli',
-            'GZip'    => 'LibCompress\\Server\\PHP::gzip'
+            'ImageMagick'   => 'LibCompress\\Server\\PHP::imageMagick',
+            'ImageGD'       => 'LibCompress\\Server\\PHP::imageGD',
+            'GD/WebP'       => 'LibCompress\\Server\\PHP::gdWebP',
+            'Brotli'        => 'LibCompress\\Server\\PHP::brotli',
+            'GZip'          => 'LibCompress\\Server\\PHP::gzip'
         ]
     ]
 ];

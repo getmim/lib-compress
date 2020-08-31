@@ -9,6 +9,22 @@ namespace LibCompress\Server;
 
 class PHP
 {
+	static function imageMagick(): array{
+		$imagick_info = null;
+
+		if(class_exists('Imagick')){
+			$imagick_info = \Imagick::getVersion();
+			$regex = '!([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?!';
+
+			if(preg_match($regex, $imagick_info['versionString'], $match))
+				$imagick_info['versionString'] = $match[0];
+		}
+		return [
+			'success' => !!$imagick_info,
+			'info'    => $imagick_info ? $imagick_info['versionString'] : 'Not installed'
+		];
+	}
+
 	static function imageGD(): array{
 		$gd_info = null;
 		if(function_exists('gd_info'))

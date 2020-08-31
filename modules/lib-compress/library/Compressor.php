@@ -65,6 +65,13 @@ class Compressor
         return $result ? $result : null;
     }
 
+    static function jp2(string $file, string $target, int $quality=40): bool{
+		$img = new \Imagick($file);
+		$img->setImageFormat("jp2");
+		$img->setOption('jp2:quality', $quality);
+		return $img->writeImage($target);
+    }
+
 	static function webp(string $file, string $target, int $quality=90): bool{
 		list($width, $height, $type) = getimagesize($file);
 
@@ -73,9 +80,6 @@ class Compressor
 		switch($type){
             case IMAGETYPE_GIF:
                 $image_source = imagecreatefromgif($file);
-                break;
-            case IMAGETYPE_JPEG:
-                $image_source = imagecreatefromjpeg($file);
                 break;
             case IMAGETYPE_PNG:
                 $image_source = imagecreatefrompng($file);
