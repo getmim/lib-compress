@@ -82,6 +82,9 @@ class Compressor
 		$image_source = null;
 
 		switch($type){
+            case IMAGETYPE_JPEG:
+                $image_source = imagecreatefromjpeg($file);
+                break;
             case IMAGETYPE_GIF:
                 $image_source = imagecreatefromgif($file);
                 break;
